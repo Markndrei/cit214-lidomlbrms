@@ -1,0 +1,7 @@
+.container{
+    height: 3.125rem;
+    display: flex;
+    justify-content: center;
+    font-size: small;
+    background-color: transparent;
+}

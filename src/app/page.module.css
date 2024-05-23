@@ -1,0 +1,145 @@
+.main{
+    height: 200vh;
+  }
+  .container{
+      background-color: inherit;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      height: 100vh;
+      overflow: hidden;
+  }
+  
+  .typed{
+      font-size: 4rem;
+      justify-content: center;
+      display: inline-block;
+  }
+  .Ldesc{
+      padding-top: 3rem;
+      font-size: 2.25rem;
+  }
+  .container{
+      background-color: inherit;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      font-size: 1.25rem;
+  }
+  .title{
+      font-family: 'Milker';
+      font-size: 10rem;
+      letter-spacing: 0.25rem;
+  }
+  .typed{
+      font-size: 1.75rem;
+      justify-content: center;
+      color: inherit;
+  }
+  .Rdesc{
+      font-family: 'Milker';
+      font-size: 4rem;
+      align-items: center;
+      text-align: center;
+      color: inherit;
+  }
+  .explore {
+      width: 12rem;
+      height: auto;
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      outline: none;
+      border: 0;
+      vertical-align: middle;
+      text-decoration: none;
+      background: transparent;
+      padding: 0;
+      font-size: inherit;
+      font-family: inherit;
+      margin-top: 2rem;
+    }
+  .button {
+      width: 12rem;
+      height: auto;
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      outline: none;
+      border: 0;
+      vertical-align: middle;
+      text-decoration: none;
+      background: transparent;
+      padding: 0;
+      font-size: inherit;
+      font-family: inherit;
+    }
+    
+    .circle {
+      transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+      position: relative;
+      display: block;
+      margin: 0;
+      width: 3rem;
+      height: 3rem;
+      background: #CF6679;
+      border-radius: 1.625rem;
+    }
+    
+    .circle .icon {
+      transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      background: blueviolet;
+    }
+    
+    .circle .icon.arrow {
+      transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+      left: 0.625rem;
+      width: 1.125rem;
+      height: 0.125rem;
+      background: none;
+    }
+    
+    .circle .icon.arrow::before {
+      position: absolute;
+      content: "";
+      top: -0.25rem;
+      right: 0.0625rem;
+      width: 0.625rem;
+      height: 0.625rem;
+      border-top: 0.125rem solid #60100B;
+      border-right: 0.125rem solid #60100B;
+      transform: rotate(45deg);
+    }
+    
+    .buttonText {
+      transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+      position: absolute;
+      top: 50%; 
+      left: 50%;
+      transform: translate(-50%, -50%); 
+      padding: 0.75rem;
+      color: inherit;
+      font-weight: 700;
+      line-height: 1.6;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    
+    .button:hover .circle {
+      width: 100%;
+    }
+    
+    .button:hover .circle .icon.arrow {
+      background: inherit;
+      transform: translate(1rem, 0);
+    }
+    
+    .button:hover .buttonText {
+      color: inherit;
+      left: 55%;
+    }
