@@ -6,45 +6,62 @@ import {
   SquareLibrary,
   UsersRound,
   Shield,
+  Dices,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 
 export const navItems = [
-  { name: "Search", href: "/dashboard", icon: SearchCheck, requiresAuth: true },
+  {
+    name: "Search",
+    href: "/dashboard",
+    icon: SearchCheck,
+    requiresAuth: true,
+    requiredPermissions: ["search:book"],
+  },
   {
     name: "Settings",
     href: "/dashboard/settings",
     icon: SlidersHorizontal,
     requiresAuth: true,
+    requiredPermissions: ["search:book"],
   },
   {
     name: "Affiliated Library",
     href: "/dashboard/affiliated",
     icon: SquareLibrary,
     requiresAuth: true,
+    requiredPermissions: ["search:book"],
   },
   {
     name: "About",
     href: "/dashboard/about",
     icon: UsersRound,
     requiresAuth: true,
+    requiredPermissions: ["search:book"],
+  },
+  {
+    name: "Generate Recommendations",
+    href: "/dashboard/recommendations",
+    icon: Dices,
+    requiresAuth: true,
+    requiredPermissions: ["search:book"],
   },
   {
     name: "Admin Functions",
     href: "/admin",
     icon: Shield,
     requiresAuth: true,
+    requiredPermissions: ["add:book", "delete:book", "edit:book"],
   },
 ];
 
 const DashboardNav = () => {
   const pathname = usePathname();
-  // const { user, isAuthenticated, isLoading, getPermissions } =
-  //   useKindeBrowserClient();
-  // const { permissions } = getPermissions();
-
+  const { user, isAuthenticated, isLoading, getPermissions } =
+    useKindeBrowserClient();
+  const { permissions } = getPermissions();
   return (
     <nav className="grid items-start gap-2">
       {navItems.map((item, index, requiresAuth) => (
@@ -65,6 +82,15 @@ const DashboardNav = () => {
 };
 
 export default DashboardNav;
+
+function useKindeBrowserClient(): {
+  user: any;
+  isAuthenticated: any;
+  isLoading: any;
+  getPermissions: any;
+} {
+  throw new Error("Function not implemented.");
+}
 // function useKindeBrowserClient(): {
 //   user: any;
 //   isAuthenticated: any;

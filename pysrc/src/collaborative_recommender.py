@@ -1,9 +1,9 @@
 import pickle
 import numpy as np
 
-pivot_table = pickle.load(open("C:/Users/Mark Andrei Encanto/Downloads/models-20240523T143754Z-001/models/pivot_table.pkl", "rb"))
-similarity_scores = pickle.load(open("C:/Users/Mark Andrei Encanto/Downloads/models-20240523T143754Z-001/models/similarity_scores.pkl", "rb"))
-books_df = pickle.load(open("C:/Users/Mark Andrei Encanto/Downloads/models-20240523T143754Z-001/models/books_df.pkl", "rb"))
+pivot_table = pickle.load(open("models/pivot_table.pkl", "rb"))
+similarity_scores = pickle.load(open("models/similarity_scores.pkl", "rb"))
+books_df = pickle.load(open("models/books_df.pkl", "rb"))
 
 
 def recommendFor(book_name, top=5):
@@ -29,3 +29,4 @@ def recommendFor(book_name, top=5):
         results.append(item)
 
     return results
+

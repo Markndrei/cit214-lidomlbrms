@@ -16,6 +16,8 @@ export async function GET() {
               bookTitle: true,
               bookAuthor: true,
               yearOfPublication: true,
+              imageUrlM: true,
+              imageUrlL:true
             },
             orderBy: {
               bookTitle: "asc",

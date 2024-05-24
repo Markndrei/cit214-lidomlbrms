@@ -8,6 +8,7 @@ interface PostCardProps {
     bookTitle: string;
     bookAuthor: string;
     yearOfPublication: number;
+    imageUrlM: string;
   };
 }
 
@@ -18,9 +19,18 @@ const PostCard: FC<PostCardProps> = ({ post }) => {
     <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
       <a href="#">
         <img
-          className="p-8 rounded-t-lg"
-          src="/favicon.ico"
-          alt="product image"
+          className="p-8 rounded-t-lg mx-auto"
+          style={{
+            width: "90%",
+            height: "280px",
+            objectPosition: "center",
+            maxHeight: "150",
+          }}
+          src={post.imageUrlM}
+          onError={(e) => {
+            (e.target as HTMLImageElement).onerror = null;
+            (e.target as HTMLImageElement).src = "/favicon.ico";
+          }}
         />
       </a>
       <div className="px-5 pb-5">

@@ -1,7 +1,7 @@
 import pickle
 import pandas as pd
 
-popularity_df =pd.read_pickle("C:/Users/Mark Andrei Encanto/Downloads/models-20240523T143754Z-001/models/popular.pkl")
+popularity_df =pd.read_pickle("models/popular.pkl")
 MAX_RECOMMENDATIONS = popularity_df.shape[0]
 
 

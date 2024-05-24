@@ -1,17 +1,15 @@
 "use client";
 import PostCard from "../components/PostCard";
-import prisma from "@/lib/prismadb";
 import { Input } from "@/components/ui/input";
-import { redirect } from "next/navigation";
 import { useState, useEffect, SetStateAction } from "react";
 import axios from "axios";
-import { exec } from "child_process";
 
 interface Book {
   ISBN: string;
   bookTitle: string;
   bookAuthor: string;
   yearOfPublication: number;
+  imageUrlM: string;
 }
 
 export async function getBooks() {
@@ -34,8 +32,10 @@ export default function Dashboard() {
   const searchFilter = (books: Book[]) => {
     return books.filter(
       (book) =>
+        book.ISBN.toLowerCase().includes(query.toLowerCase()) ||
         book.bookTitle.toLowerCase().includes(query.toLowerCase()) ||
-        book.bookAuthor.toLowerCase().includes(query.toLowerCase())
+        book.bookAuthor.toLowerCase().includes(query.toLowerCase()) ||
+        book.yearOfPublication.toString().includes(query)
     );
   };
 
@@ -44,6 +44,7 @@ export default function Dashboard() {
   const handleChange = (e: { target: { value: SetStateAction<string> } }) => {
     setQuery(e.target.value);
   };
+
   return (
     <div>
       <div>

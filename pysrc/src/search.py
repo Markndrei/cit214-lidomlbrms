@@ -1,7 +1,7 @@
 import re
 import pickle
 
-books_df = pickle.load(open("C:/Users/Mark Andrei Encanto/Downloads/models-20240523T143754Z-001/models/books_df.pkl", "rb"))
+books_df = pickle.load(open("models/books_df.pkl", "rb"))
 book_names = books_df["Book-Title"].tolist()
 book_names_lower = [string.lower() for string in book_names]
 
@@ -37,3 +37,4 @@ def search_book(search_string: str, top = 10):
         items.append(item)
 
     return items
+

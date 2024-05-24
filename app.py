@@ -1,84 +1,52 @@
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-import uvicorn
-import argparse
-from functools import lru_cache
-from pydantic import BaseModel
-
-from pysrc.src.popularity_recommender import popular_books_top
+from flask import Flask, request, jsonify
 from pysrc.src.collaborative_recommender import recommendFor
-from pysrc.src.search import search_book
 
-import config
+app = Flask(__name__)
 
-app = FastAPI()
+@app.route('/recommend', methods=['GET'])
+def recommend():
+    book_name = request.args.get('book_name', default = '', type = str)
+    top = request.args.get('top', default = 5, type = int)
+    recommendations = recommendFor(book_name, top)
+    return jsonify(recommendations)
 
-origins = [
-    "http://localhost:5173",
-]
+if __name__ == '__main__':
+    app.run(debug=True)
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+    
+    """
+    const RecommendButton = () => {
+  const [recommendations, setRecommendations] = useState([]);
 
-class Book(BaseModel):
-    name: str
+  const handleClick = () => {
+    const book_name = event.target.value; // Replace with the actual book name
+    const top = 5; // Replace with the actual number of recommendations
 
+    fetch(
+      `http://localhost:5000/recommend?book_name=${encodeURIComponent(
+        book_name
+      )}&top=${top}`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setRecommendations(data);
+      });
+  };
 
-@lru_cache()
-def get_settings():
-    return config.Settings()
+  return (
+    <div>
+      <button style={{ position: "fixed", top: 0 }} onClick={handleClick}>
+        Recommend
+      </button>
+      {(recommendations as Book[]).map((recommendation, index) => (
+        <div key={index}>
+          <h2>{recommendation.bookTitle}</h2>
+          <p>{recommendation.bookAuthor}</p>
+          <img src={recommendation.imageUrlM} alt={recommendation.bookTitle} />
+        </div>
+      ))}
+    </div>
+  );
+};
 
-
-@app.get("/hello")
-def read_hello():
-    return {"message": f"Hello from {get_settings().backend_name}"}
-
-
-@app.get("/search/{book_name}")
-async def search_book_name(book_name: str = ""):
-    return search_book(book_name)
-
-
-@app.get("/popular/{limit}")
-async def get_popular(limit: int):
-    return popular_books_top(limit)
-
-
-@app.post("/recommend")
-async def get_recommended(book: Book):
-    print(book.name)
-    recommendation_on = search_book(book.name, 1)[0]
-    return {'book': recommendation_on, 'recommendation': recommendFor(book.name)}
-
-
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Book Recommender API")
-    parser.add_argument("-e", "--env", default="dev")
-    parser.add_argument("-w", "--workers", default=1, type=int)
-    args = parser.parse_args()
-    host = get_settings().backend_host
-    port = get_settings().backend_port
-    workers = args.workers
-
-    if args.env == "dev":
-        uvicorn.run(
-            "app:app",
-            host=host,
-            port=port,
-            reload=True,
-            env_file="./config/.env.dev"
-        )
-    else:
-        uvicorn.run(
-            "app:app",
-            host=host,
-            port=port,
-            env_file="./config/.env.prod",
-            workers=workers,
-        )
+export { RecommendButton };"""
