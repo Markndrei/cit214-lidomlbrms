@@ -1,4 +1,5 @@
 "use client";
+
 import axios from "axios";
 import PostCard from "../components/PostCard";
 import { useState, useEffect, SetStateAction } from "react";
@@ -8,17 +9,18 @@ interface Book {
   bookTitle: string;
   bookAuthor: string;
   yearOfPublication: number;
+  imageUrlM: string;
 }
 
-export async function getBooks() {
+async function getBooks() {
   const response = await axios.get("../api/books");
   console.log(response);
   return response.data; // Return the data from the response
 }
 
 export default function Home() {
-  const [books, setBooks] = useState([]); // State to store books
-  const [query, setQuery] = useState("");
+  const [books, setBooks] = useState<Book[]>([]); // State to store books
+  const [query, setQuery] = useState<string>("");
 
   useEffect(() => {
     async function fetchBooks() {
@@ -32,7 +34,8 @@ export default function Home() {
     return books.filter(
       (book) =>
         book.bookTitle.toLowerCase().includes(query.toLowerCase()) ||
-        book.bookAuthor.toLowerCase().includes(query.toLowerCase())
+        book.bookAuthor.toLowerCase().includes(query.toLowerCase()) ||
+        book.yearOfPublication.toString().includes(query.toLowerCase())
     );
   };
 
@@ -41,7 +44,6 @@ export default function Home() {
   const handleChange = (e: { target: { value: SetStateAction<string> } }) => {
     setQuery(e.target.value);
   };
-
   return (
     <div>
       <input onChange={handleChange} placeholder="Search Title" />
