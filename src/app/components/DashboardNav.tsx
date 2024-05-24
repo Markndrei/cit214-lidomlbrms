@@ -15,12 +15,6 @@ import React from "react";
 export const navItems = [
   { name: "Search", href: "/dashboard", icon: SearchCheck, requiresAuth: true },
   {
-    name: "Settings",
-    href: "/dashboard/settings",
-    icon: SlidersHorizontal,
-    requiresAuth: true,
-  },
-  {
     name: "Affiliated Library",
     href: "/dashboard/affiliated",
     icon: SquareLibrary,
@@ -34,13 +28,13 @@ export const navItems = [
   },
   {
     name: "Generate Recommendation",
-    href: "/dashboard/recommendation",
+    href: "/dashboard/recommendations",
     icon: DicesIcon,
     requiresAuth: true,
   },
   {
     name: "Admin Functions",
-    href: "/admin",
+    href: "https://lidom-lidom-lidom-lidom.vercel.app",
     icon: Shield,
     requiresAuth: true,
   },
