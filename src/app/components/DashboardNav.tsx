@@ -21,13 +21,6 @@ export const navItems = [
     requiredPermissions: ["search:book"],
   },
   {
-    name: "Settings",
-    href: "/dashboard/settings",
-    icon: SlidersHorizontal,
-    requiresAuth: true,
-    requiredPermissions: ["search:book"],
-  },
-  {
     name: "Affiliated Library",
     href: "/dashboard/affiliated",
     icon: SquareLibrary,
