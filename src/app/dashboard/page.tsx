@@ -9,6 +9,8 @@ interface Book {
   bookTitle: string;
   bookAuthor: string;
   yearOfPublication: number;
+  publisher: string;
+  library: number;
   imageUrlM: string;
 }
 

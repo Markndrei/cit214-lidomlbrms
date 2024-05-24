@@ -5,5 +5,5 @@ export type BookCreationInput= {
     ISBN: string,
     publicationYear: string,
     publisher: string,
-    library: string
+    library: number,
 }

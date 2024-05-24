@@ -9,6 +9,7 @@ interface Book {
   bookTitle: string;
   bookAuthor: string;
   yearOfPublication: number;
+  publisher: string;
   imageUrlM: string;
 }
 
@@ -36,13 +37,22 @@ const Recommendations: React.FC = () => {
   return (
     <div>
       <h1>Random Books</h1>
-      <button onClick={fetchBooks}>Fetch Books</button>
+      <button
+        onClick={fetchBooks}
+        type="button"
+        className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+      >
+        Fetch Books
+      </button>
       {books.map((book, index) => (
-        <div key={index}>
+        <div
+          className="grid md:grid-cols-4 lg:grid-cols-4 gap-4 mt-10 justify-items-stretch"
+          key={index}
+        >
           <article className="overflow-hidden rounded-lg shadow transition hover:shadow-lg">
             <img
               alt=""
-              src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
+              src={book.imageUrlM}
               className="h-56 w-full object-cover"
             />
 
@@ -62,12 +72,11 @@ const Recommendations: React.FC = () => {
               </a>
 
               <p className="mt-2 line-clamp-3 text-sm/relaxed text-gray-500">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Recusandae dolores, possimus pariatur animi temporibus nesciunt
-                praesentium dolore sed nulla ipsum eveniet corporis quidem,
-                mollitia itaque minus soluta, voluptates neque explicabo tempora
-                nisi culpa eius atque dignissimos. Molestias explicabo corporis
-                voluptatem?
+                By: {book.bookAuthor}
+                <br />
+                ISBN: {book.ISBN}
+                <br />
+                Publisher: {book.publisher}
               </p>
             </div>
           </article>

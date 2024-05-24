@@ -8,6 +8,7 @@ interface Book {
   ISBN: string;
   bookTitle: string;
   bookAuthor: string;
+  library: number;
   yearOfPublication: number;
   imageUrlM: string;
 }
