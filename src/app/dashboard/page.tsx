@@ -12,7 +12,7 @@ interface Book {
   imageUrlM: string;
 }
 
-export async function getBooks() {
+async function getBooks() {
   const response = await axios.get("../api/books");
   console.log(response);
   return response.data; // Return the data from the response
