@@ -1,8 +1,8 @@
 import { useState } from "react";
 import styles from "@/src/app/loginpage/page.module.css";
 import React from "react";
-import Signup from "@/src/components/Signup";
-import Login from "@/src/components/Login";
+import Signup from "./Signup";
+import Login from "./Login";
 
 const LoginContainer = () => {
   const [isActive, setIsActive] = useState(false);

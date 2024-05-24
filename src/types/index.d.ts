@@ -3,7 +3,7 @@ export type BookCreationInput= {
     author: string,
     location: string,
     ISBN: string,
-    publciationYear: string,
-    publiher: string,
+    publicationYear: string,
+    publisher: string,
     library: string
 }
